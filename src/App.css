@@ -4,12 +4,12 @@
 }
 
 .NavBar {
-  background-color: antiquewhite;
+  background-color: #E64848;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
   width: 80vw;
-  height: 50px;
+  height: 58px;
   margin: 20px auto;
 }
 
@@ -19,10 +19,63 @@
   font-weight: 500;
   display: flex;
   align-items: center;
+  color:white;
 }
 
 .logo {
-  align-self: center;
   width:30px;
   height: 30px;
+}
+
+.header{
+  display:flex;
+}
+
+.header > h1 {
+  font-size: 42px ;
+}
+
+.header > img {
+  margin: auto 0;
+  height: 50px;
+  width: 50px;
+}
+
+.widgetWrapper{
+  display:flex;
+  font-weight: 500;
+  font-size: 12px;
+  color:white;
+}
+
+.logoWrapper{
+  display:flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 12px;
+  color:white;
+}
+
+.pokemonContainer{
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  height: 50px;
+  margin: 20px auto;
+  font-size: 18px;
+}
+
+.counterWrapper {
+  margin-left: 10px;
+  display:flex;
+}
+.counterWrapper > p {
+  margin-right: 5px;
+  margin-top: 30px;
+}
+
+.counterButtons {
+  display:flex;
+  flex-direction: column;
 }

@@ -1,27 +1,30 @@
 import React, {useState} from 'react'
 
-const Counter = () => {
-  const [counter,setCounter] = useState(0);  
+const Counter = ({initial,limit,onAdd}) => {
+  const [counter,setCounter] = useState(initial);
   
   const increaseCounter = () => {
-    if(counter < 6){
+    if(counter < limit){
       setCounter(counter + 1)
+    } else {
+      alert('Ya tenes 6 pokemones!')
     }
   }
 
   const decreaseCounter = () => {
     if(counter > 0){
       setCounter(counter - 1);
-    }
+    } 
   }
 
   return (
     <div className="counterWrapper">
       <p>{counter}</p>
       <div className='counterButtons'>
-        <button onClick={increaseCounter}>Inc</button>      
-        <button onClick={decreaseCounter}>Dec</button>      
-        <button onClick={() => setCounter(0)}>Reset</button>   
+        <button onClick={increaseCounter}> + </button>      
+        <button onClick={decreaseCounter}> - </button>      
+        {/* <button onClick={() => setCounter(0)}>Reset</button> */}
+        <button onClick = {() => onAdd(counter)}>DISPLAY</button>   
       </div>   
     </div>
   )

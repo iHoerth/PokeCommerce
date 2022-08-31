@@ -1,14 +1,12 @@
 import './App.css';
-import NavBar from './components/NavBar';
-import PokemonList from './components/PokemonList';
+import Landing from './components/Landing';
 
 
 function App() {
 
   return (
     <div className="App">
-      <NavBar />
-      <PokemonList greetings={'Pokemons'}/>
+      <Landing />
     </div>
   );
 }

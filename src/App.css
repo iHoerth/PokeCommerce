@@ -85,6 +85,7 @@
   border: 2px solid;
   border-radius: 10px;
   display: flex;
+  flex-wrap: wrap;
   width: 80vw;
   min-height: 600px;
   margin: 20px auto;
@@ -97,12 +98,12 @@
   align-items: center;
   justify-content: center;
   margin: 5px;
-  height: 80px;
-  min-width: 100px;
-  background-color: #E64848;
+  /* height: 80px;
+  min-width: 100px; */
+  /* background-color: #E64848; */
   font-size: 14px;
   font-weight: 500;
-  color:antiquewhite;
+  /* color:antiquewhite; */
   border: 1px solid black;
   border-radius: 4px;
 }

@@ -70,6 +70,7 @@
 .counterWrapper {
   margin-left: 10px;
   display:flex;
+  border: 2px soid;
 }
 .counterWrapper > p {
   margin-right: 5px;
@@ -92,7 +93,34 @@
   font-size: 18px;
 }
 
-#card{
+#detailContainer{
+  border: 2px solid;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 80vw;
+  min-height: 600px;
+  margin: 20px auto;
+  font-size: 18px;
+}
+
+#itemDetail{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  font-size: 25px;
+  font-weight: 500;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+#itemDetail > img {
+  height: 400px;
+}
+
+.card{
   display: flex;
   flex-direction: column;
   align-items: center;

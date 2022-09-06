@@ -2,9 +2,14 @@ import React from 'react'
 import {useEffect, useState} from 'react'
 import ItemList from './ItemList';
 import {getPokemonTypes,fetchPokemon} from './Helpers';
+import {useParams} from 'react-router-dom';
 
 const ItemListContainer = () => {
   const [pokemons,setPokemons] = useState([]);
+  const {pokemonid} = useParams();
+
+
+
 
   useEffect(() => {
     const getPoke = async() => {

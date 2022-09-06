@@ -22,6 +22,28 @@
   color:white;
 }
 
+.navActive{
+  padding:10px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  color:white;
+  border-radius: 10px 10px 0 0;
+  background-color: #c53030;
+}
+
+.navInactive{
+  padding:10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  color:white;
+}
+
 .logo {
   width:30px;
   height: 30px;

@@ -2,6 +2,7 @@ import React from 'react'
 import ItemDetail from './ItemDetail'
 import {useEffect, useState} from 'react'
 import {getPokemonTypes,fetchPokemon} from './Helpers';
+import { BrowserRouter,Routes,Route,Link } from 'react-router-dom';
 
 
 const ItemDetailContainer = () => {
@@ -11,7 +12,7 @@ const ItemDetailContainer = () => {
     const asyncFunction = async() => {
       try{
         const pokeList = await fetchPokemon(1,150);
-        const filteredPoke = pokeList.find(poke => poke.id === 6);
+        const filteredPoke = await pokeList.find(poke => poke.id === 6);
         console.log(filteredPoke)
         setPokemon(filteredPoke);
       } catch (error) {

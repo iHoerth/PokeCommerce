@@ -5,7 +5,6 @@ const getPokemonTypes = pokemon => {
   }
   return pokemonTypes;
 }
-
 async function fetchPokemon(idStart,idEnd){
   const allPokemon = [];
   for(let i = idStart; i <= idEnd; i++){
@@ -17,6 +16,8 @@ async function fetchPokemon(idStart,idEnd){
   };
   return allPokemon;
 };
+
+
 
 const toTitleCase = str => str[0].toUpperCase() + str.slice(1).toLowerCase();
 

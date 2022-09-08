@@ -8,9 +8,6 @@ const ItemListContainer = () => {
   const [pokemons,setPokemons] = useState([]);
   const {pokemonid} = useParams();
 
-
-
-
   useEffect(() => {
     const getPoke = async() => {
       try{

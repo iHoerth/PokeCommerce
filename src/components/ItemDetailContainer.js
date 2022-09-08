@@ -2,25 +2,29 @@ import React from 'react'
 import ItemDetail from './ItemDetail'
 import {useEffect, useState} from 'react'
 import {getPokemonTypes,fetchPokemon} from './Helpers';
-import { BrowserRouter,Routes,Route,Link } from 'react-router-dom';
 
 
 const ItemDetailContainer = () => {
-  const [pokemon,setPokemon] = useState({})
-
+  const [pokemon,setPokemon] = useState()
+  const [loading,setLoading] = useState(true)
+  
   useEffect(() => {
     const asyncFunction = async() => {
-      try{
-        const pokeList = await fetchPokemon(1,150);
-        const filteredPoke = await pokeList.find(poke => poke.id === 6);
-        console.log(filteredPoke)
-        setPokemon(filteredPoke);
-      } catch (error) {
-        console.log('hubo un error')
-      }
+      const pokeList = await fetchPokemon(1,150);
+      const filteredPoke = await pokeList.find(poke => poke.id === 6);
+      setPokemon(await filteredPoke);
+      setLoading(false);
     }
     asyncFunction();
   },[])
+
+  console.log('hola');
+
+  if(loading){
+    return (
+      <h1>LOADING</h1>
+    )
+  } 
 
   return (
     <div id="detailContainer">

@@ -16,8 +16,9 @@ function App() {
       <div className="App">
         <NavBar />
         <Routes>
-          <Route path='/' element={<ItemListContainer />}/>
-          <Route path='/pokemondetail/' element={<ItemDetailContainer />}/>
+          <Route path='/pokemons/' element={<ItemListContainer />}/>
+          <Route path='/pokemons/pokemondetail/' element={<ItemDetailContainer />}/>
+          <Route path='/pokemons/pokemondetail/:pokemon' element={<ItemDetailContainer />}/>
           <Route path='/pokeitems' element={<PokeItems />}/>
           <Route path='/contacto' element={<Contacto />}/>
           <Route path='/login' element={<Login />}/>

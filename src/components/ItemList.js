@@ -5,15 +5,10 @@ import {toTitleCase} from './Helpers';
 
 
 const ItemList = ({pokemons}) => {
-  
   return (
     <>
       {
-        pokemons.map(poke =>{
-          return(
-            <Item key={poke.id} id={poke.id} title={toTitleCase(poke.name)} pictureUrl={poke.sprites.front_default} />
-            )
-          })
+        pokemons.map(poke => <Item key={poke.id} id={poke.id} title={toTitleCase(poke.name)} pictureUrl={poke.sprites.front_default} />)
       }
     </>
   )

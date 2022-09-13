@@ -17,6 +17,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/pokemons/' element={<ItemListContainer />}/>
+          {/* <Route path='/pokemons/:type' element={<ItemListContainer />}/> */}
           <Route path='/pokemons/pokemondetail/' element={<ItemDetailContainer />}/>
           <Route path='/pokemons/pokemondetail/:pokemon' element={<ItemDetailContainer />}/>
           <Route path='/pokeitems' element={<PokeItems />}/>
@@ -25,8 +26,6 @@ function App() {
           <Route path='/signup' element={<Signup />}/>
           <Route path='*' element={<ItemListContainer />}/>
         </Routes>
-        {/* <ItemListContainer />
-        <ItemDetailContainer  /> */}
       </div>
     </BrowserRouter>
   );

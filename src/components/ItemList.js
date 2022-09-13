@@ -1,8 +1,6 @@
 import React from 'react'
 import Item from './Item'
-import {useEffect, useState} from 'react'
 import {toTitleCase} from './Helpers';
-
 
 const ItemList = ({pokemons}) => {
   return (

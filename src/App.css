@@ -4,8 +4,6 @@
 }
 
 .loadingContainer{
-  /* border: 2px solid;
-  border-radius: 10px; */
   display: flex;
   justify-content: center;
   width: 80vw;
@@ -115,10 +113,33 @@
   flex-direction: column;
 }
 
+.backgroundModal{
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #itemContainer{
   border: 2px solid;
   border-radius: 10px;
   display: flex;
+  flex-wrap: wrap;
+  width: 80vw;
+  min-height: 600px;
+  margin: 20px auto;
+  font-size: 18px;
+}
+
+#itemContainerWrapper{
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   width: 80vw;
   min-height: 600px;
@@ -139,6 +160,8 @@
 }
 
 #itemDetail{
+  width: 80vw;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -147,8 +170,9 @@
   font-size: 25px;
   font-weight: 500;
   border: 1px solid black;
-  border-radius: 4px;
+  border-radius: 30px;
 }
+
 #itemDetail > img {
   height: 400px;
 }
@@ -169,5 +193,6 @@
   border-radius: 4px;
 }
 
-/* .pokeimgContainer{
-} */
+.no-scroll{
+  overflow: hidden;
+}

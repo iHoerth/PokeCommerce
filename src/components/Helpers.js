@@ -17,8 +17,6 @@ async function fetchPokemon(idStart,idEnd){
   return allPokemon;
 };
 
-
-
 const toTitleCase = str => str[0].toUpperCase() + str.slice(1).toLowerCase();
 
 export  {getPokemonTypes,fetchPokemon,toTitleCase};

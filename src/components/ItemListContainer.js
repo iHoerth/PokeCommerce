@@ -1,14 +1,14 @@
-import React from 'react'
-import {useEffect, useState} from 'react'
-import ItemList from './ItemList';
-import {getPokemonTypes,fetchPokemon} from './Helpers';
+import {React, useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom';
-import {useNavigate} from 'react-router-dom';
+import FilterSection from './FilterSection';
+import {fetchPokemon} from './Helpers';
+import ItemList from './ItemList';
 
 const ItemListContainer = () => {
   const [pokemons,setPokemons] = useState([]);
   const [loading,setLoading] = useState(true);
-  const {pokemonid} = useParams();
+  // const {pokemonid} = useParams();
+  const type = useParams();
 
   useEffect(() => {
     const getPoke = async() => {
@@ -32,8 +32,11 @@ const ItemListContainer = () => {
   } 
 
   return (
-    <div id="itemContainer">
-      <ItemList pokemons={pokemons} />
+    <div id="itemContainerWrapper">
+      <FilterSection pokemons={pokemons}/>
+      <div id="itemContainer">
+        <ItemList pokemons={pokemons} />
+      </div>
     </div>
   )
 }

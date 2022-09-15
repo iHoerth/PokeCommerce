@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react'
+import ItemDetail from './ItemDetail';
+import ItemDetailContainer from './ItemDetailContainer';
 // import {Navigate, useNavigate} from 'react-router-dom';
 
-export const Item = ({id,title,price,pictureUrl}) => {
+export const Item = ({id,title,price,pictureUrl,getValues}) => {
   const [openModal,setOpenModal] = useState(false);
   const [coords,setCoords] = useState({x:0,y:0});
   // let navigate = useNavigate();
@@ -27,12 +29,7 @@ export const Item = ({id,title,price,pictureUrl}) => {
       {
         openModal ?
         <div className='backgroundModal'>
-          <div id='itemDetail'>
-            <button onClick={showModal}>CERRAR MODAL</button>
-            <div>{id}</div>
-            <div>{title}</div>
-            <img src={pictureUrl} alt="" />
-          </div>
+          <ItemDetail showModal={showModal} id={id} title={title} pictureUrl={pictureUrl} getValues={getValues}/>
         </div>
         :
         null

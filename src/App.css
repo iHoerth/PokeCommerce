@@ -114,6 +114,7 @@
 }
 
 .backgroundModal{
+  transition: all .5s ease-in-out;
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
@@ -131,9 +132,11 @@
   display: flex;
   flex-wrap: wrap;
   width: 80vw;
-  min-height: 600px;
+  min-height: 150px;
   margin: 20px auto;
   font-size: 18px;
+  padding: 5px;
+  
 }
 
 #itemContainerWrapper{
@@ -160,6 +163,7 @@
 }
 
 #itemDetail{
+  transition: 2000ms;
   width: 80vw;
   background-color: white;
   display: flex;
@@ -179,12 +183,13 @@
 
 .card{
   display: flex;
+  width: 13.5%;
+  min-width: 187px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 5px;
-  /* height: 80px;
-  min-width: 100px; */
+  max-height: 140px;
   /* background-color: #E64848; */
   font-size: 14px;
   font-weight: 500;

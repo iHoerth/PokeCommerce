@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemDetail from './ItemDetail'
 import {useEffect, useState} from 'react'
-import {fetchPokemon} from './Helpers';
+import {fetchAllPokemon} from './Helpers';
 import { useParams } from 'react-router-dom';
 import { BrowserRouter, Router, Switch, Link } from 'react-router-dom';
 
@@ -13,8 +13,8 @@ const ItemDetailContainer = () => {
   
   useEffect(() => {
     const asyncFunction = async() => {
-      const pokeList = await fetchPokemon(1,150);
-      console.log(params);
+      const pokeList = await fetchAllPokemon(1,150);
+      // console.log(params);
       const filteredPoke = await pokeList.find(poke => poke.name === params.pokemon);
       setPokemon(await filteredPoke);
       setLoading(false);

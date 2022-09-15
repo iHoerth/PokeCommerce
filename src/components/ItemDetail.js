@@ -5,13 +5,23 @@ import {toTitleCase} from './Helpers';
  
 
 
-const ItemDetail = ({pokemon}) => {
+const ItemDetail = ({id,title,pictureUrl,showModal,getValues}) => {
+  const [counter,setCounter] = useState(0);
+
+  const add = () => {
+    setCounter(counter + 1);
+  }
+
 
   return (
     <div id='itemDetail'>
-      <div>{pokemon.id}</div>
-      <div>{pokemon.name}</div>
-      <img src={pokemon.sprites.front_default} alt="" />
+      <button onClick={showModal}>CERRAR MODAL</button>
+      <div>{id}</div>
+      <div>{title}</div>
+      <img src={pictureUrl} alt="" />
+      <button onClick={add}>AUMENTAR</button>
+      <button onClick={() => getValues(counter)}>PASAR VALUE</button>
+      <p>Current counter value : {counter}</p>
     </div>
   )
 }

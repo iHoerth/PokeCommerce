@@ -1,11 +1,14 @@
+import {React, useEffect, useState} from 'react'
+import {useParams} from 'react-router-dom';
 
 const FilterSection = ({search,searchPokemon}) => {
+  // const [pokemons,setPokemons] = useState();
 
   return (
     <div id="searchWrapper">
-      <div id="searchName" style={{display:'flex',alignItems:'center',}}>
-        {/* <p style={{fontSize:'32px',marginRight:'10px'}}>SEARCH POKEMON:</p> */}
-        <input style={{fontSize:'20px', width:'600px',height:'40px',padding:'5px'}} onKeyUp={(event) => searchPokemon(event)} id="searchInput" name="searchInput" placeholder="SEARCH POKEMON" type="text" />
+      <div id="searchName">
+        <p>SEARCH POKEMON:</p>
+        <input onKeyUp={(event) => searchPokemon(event)} id="searchInput" name="searchInput" placeholder="Name / Type / ID" type="text" />
       </div>
       {/* <form id='typeSearch' action="">
         <div id="typeWrapper">

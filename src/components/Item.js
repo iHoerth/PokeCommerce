@@ -1,36 +1,49 @@
-import React, {useEffect, useState} from 'react'
+import {useState} from 'react'
+import { toTitleCase } from '../Services/Helpers';
 import ItemDetail from './ItemDetail';
-import ItemDetailContainer from './ItemDetailContainer';
-// import {Navigate, useNavigate} from 'react-router-dom';
+import Counter from './Counter';
 
-export const Item = ({id,title,price,pictureUrl,getValues}) => {
-  const [openModal,setOpenModal] = useState(false);
-  const [coords,setCoords] = useState({x:0,y:0});
-  // let navigate = useNavigate();
-
+export const Item = ({product}) => {
+  const [openDetail,setOpenDetail] = useState(false);
   
-  const showModal = () => {
-    setOpenModal(!openModal);
+  const showDetail = () => {
+    setOpenDetail(!openDetail);
     document.body.classList.toggle('no-scroll');
-    // navigate('/pokemons/pokemondetail/'+title.toLowerCase());
   }
 
   return (
     <>
-      <div className="card" >
-        <div>{id}</div>
-        <div>{title}</div>
-        <div>{price}</div>
-          <div className='pokeimgContainer' style={{ cursor:'pointer' }} onClick={showModal}>
-          <img src ={pictureUrl} alt=''/>
+      <div className='card-container' >
+        <div className="card" onClick={showDetail} style={{ cursor:'pointer' }} >
+          <div className='card-typeImg'>
+            {
+              product.productType === 'pokemon' ?
+              product.types.map(type => <img key={product.id+type} className={'icon '+type} src={type+'.svg'} alt=''/>)
+              : null
+            }
+          </div>
+          <div>
+            {
+            product.productType === 'pokemon' ?
+            `#`+product.id
+            : null
+            }
+          </div>
+          <div>{toTitleCase(product.name)}</div>
+            <div className='pokeimgContainer'>
+            <img src ={product.sprites.front_default || product.sprites.default} alt=''/>
+          </div>
         </div>
+        <Counter poke={product} style={{fontSize:'32px'}} />
+        <div>${product.cost}</div>
       </div>
       
       {
-        openModal ?
-        <div className='backgroundModal'>
-          <ItemDetail showModal={showModal} id={id} title={title} pictureUrl={pictureUrl} getValues={getValues}/>
-        </div>
+        openDetail ?
+        <>
+          <div className='backgroundModal' onClick={() => showDetail()}/>
+          <ItemDetail  showDetail={showDetail} product={product}/>
+        </>
         :
         null
       }

@@ -1,31 +1,24 @@
-import React, {useState} from 'react'
+import { useContext } from 'react';
+import { CartContext } from '../Context/CartContext';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
-const Counter = ({initial,limit,onAdd}) => {
-  const [counter,setCounter] = useState(initial);
-  
-  const increaseCounter = () => {
-    if(counter < limit){
-      setCounter(counter + 1)
-    } else {
-      alert('Ya tenes 6 pokemones!')
-    }
-  }
-
-  const decreaseCounter = () => {
-    if(counter > 0){
-      setCounter(counter - 1);
-    } 
-  }
+const Counter = ({poke,style = {fontSize:'32px'}}) => {
+  const [cart,addToCart,removeFromCart,clearCart] = useContext(CartContext)
 
   return (
-    <div className="counterWrapper">
-      <p>{counter}</p>
-      <div className='counterButtons'>
-        <button onClick={increaseCounter}> + </button>      
-        <button onClick={decreaseCounter}> - </button>      
-        {/* <button onClick={() => setCounter(0)}>Reset</button> */}
-        <button onClick = {() => onAdd(counter)}>DISPLAY</button>   
-      </div>   
+    <div id="detail-counter">
+      <RemoveCircleIcon onClick={() => removeFromCart(poke)} style={{color:'#59CE8F',fontSize: style.fontSize, cursor:'pointer'}}/>
+      <p style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+        {
+          cart.find(x => x.name === poke.name) ?
+          cart.find(x => x.name === poke.name).quantity + ' U'
+          :
+          0 + ' U'
+        }
+      </p>
+      <AddCircleIcon onClick={() => addToCart(poke)} style={{color:'#59CE8F',fontSize:style.fontSize, cursor:'pointer'}} />
+      
     </div>
   )
 }

@@ -18,7 +18,8 @@ async function fetchAllPokemon(start,amount){
   for(let i = 0; i < pokemonsWithTypes.length; i++){
     pokemonsWithTypes[i].species = species[i]; 
   }
-  console.log(pokemonsWithTypes,'pokemon array');
+  const finalPokes = pokemonsWithTypes.map(poke => ({...poke,price:Math.random()*10000}))
+  console.log(finalPokes,'pokemon array');
   return pokemonsWithTypes;
 };
 

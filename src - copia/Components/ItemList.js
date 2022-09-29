@@ -2,11 +2,11 @@ import React from 'react'
 import Item from './Item'
 import {toTitleCase} from '../Services/Helpers';
 
-const ItemList = ({products}) => {
+const ItemList = ({pokemons,getValues}) => {
   return (
     <>
       {
-        products.map(x => <Item key={x.id} product={x} />)
+        pokemons.map(poke => <Item key={poke.id} poke={poke} getValues={getValues} />)
       }
     </>
   )

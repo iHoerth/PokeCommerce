@@ -1,27 +1,21 @@
-import {React, useEffect, useState} from 'react'
-import {useParams} from 'react-router-dom';
-import FilterSection from './FilterSection';
-import {fetchAllPokemon} from './Helpers';
-import ItemList from './ItemList';
+import {useEffect, useState} from 'react'
 
-const ItemListContainer = () => {
-  const [childValue,setChildValue] = useState(0)
-  const [pokemons,setPokemons] = useState([]);
+import FilterSection from './FilterSection';
+import ItemList from './ItemList';
+import {fetchAllPokemon} from '../Services/Helpers';
+import { Box, CircularProgress } from '@mui/material';
+
+const ItemListContainer = ({productType}) => {
+  const [products,setProducts] = useState([]);
   const [search,setSearch] = useState('');
   const [loading,setLoading] = useState(true);
-  // const {pokemonid} = useParams();
-  const type = useParams();
 
-  const getValues = (params) => {
-    console.log(params);
-    setChildValue(params);
-  }
 
   useEffect(() => {
     const getPoke = async() => {
       try{
-        const pokeList = await fetchAllPokemon(0,251);
-        setPokemons(pokeList);
+        const pokeList = await fetchAllPokemon(0,493,productType);
+        setProducts(pokeList);
         setLoading(false);
       } catch (error) {
         console.log('hubo un error')
@@ -34,12 +28,17 @@ const ItemListContainer = () => {
     setSearch(e.target.value);
   };
 
-  const filteredPoke = pokemons.filter(poke => poke.name.toLowerCase().includes(search) || poke.id == search || poke.types.includes(search));
+  const filteredProducts = products.filter(product => product.name.toLowerCase().includes(search) || product.id == search);
 
   if(loading){
     return (
-      <div className='loadingContainer'>
-        <h1 className='loading'>LOADING</h1>
+      <div id="itemContainerWrapper">
+        <div id="itemContainer" style={{justifyContent:'center'}}>
+          <Box sx={{ display: 'flex',alignItems:'center'}}>
+            <CircularProgress style={{color:'red',marginRight:'14px'}} />
+            <p style={{fontSize:'22px'}}>SEARCHING FOR POKEMON...</p>
+          </Box>
+        </div>
       </div>
     )
   } 
@@ -48,7 +47,7 @@ const ItemListContainer = () => {
     <div id="itemContainerWrapper">
       <FilterSection search={search} searchPokemon={searchPokemon} />
       <div id="itemContainer">
-        <ItemList pokemons={filteredPoke} getValues={getValues} />
+        <ItemList products={filteredProducts} />
       </div>
     </div>
   )

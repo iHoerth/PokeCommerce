@@ -34,7 +34,7 @@ export const Item = ({product}) => {
             <img src ={product.sprites.front_default || product.sprites.default} alt=''/>
           </div>
         </div>
-        <Counter poke={product} style={{fontSize:'32px'}} />
+        <Counter product={product} style={{fontSize:'32px'}} />
         <div>${product.cost}</div>
       </div>
       

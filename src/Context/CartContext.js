@@ -56,7 +56,6 @@ const CartProvider = ({children}) => {
     } else {
       setCart([...cartWithoutItem]);
     }
-    console.log(cart,'cart RESTA')
   }
   
   const clearCart = () => {

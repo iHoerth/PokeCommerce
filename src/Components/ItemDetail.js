@@ -57,7 +57,7 @@ const ItemDetail = ({showDetail, product}) => {
         </div>
 
       </div>
-      <Counter poke={product} style={{fontSize:'50px',}} />
+      <Counter product={product} style={{fontSize:'50px',}} />
      
     </div>
   )

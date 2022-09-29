@@ -209,6 +209,7 @@
   font-weight: 500;
   border: 1px solid black;
   border-radius: 6px;
+  z-index: 900;
 }
 
 #itemDetail > img {
@@ -222,13 +223,22 @@
   margin: 10px;
   display: flex;
   font-size: 18px;
-  opacity: 0;
-  transition: all 0.2s ease-out
+  transition: all 0.2s ease-out;
+  opacity:0;
 }
 
 #detail-counter:hover{
   opacity: 1;
 }
+
+/* .fadeInOnHover {
+  opacity: 0;
+  transition: all 0.2s ease-out
+}
+
+.fadeInOnHover:hover{
+  opacity: 1;
+} */
 
 .detail-title{
   font-size: 36px;
@@ -322,6 +332,7 @@
   display: flex;
   width: 13.5%;
   min-width: 230px;
+  max-width: 300px;
   flex-direction: column;
   align-items: center;
   justify-content: center;

@@ -5,7 +5,7 @@ import CartWidget from "./CartWidget";
 import Cart from "./Cart";
 import FilterSection from "./FilterSection";
 
-const NavBar = () => {
+const NavBar = ({setSearchValue,search}) => {
   const [openCart, setOpenCart] = useState(false);
   const [cart] = useContext(CartContext);
 
@@ -19,7 +19,9 @@ const NavBar = () => {
         <div className='NavBar'>
           <NavLink className={({isActive}) => isActive ? 'navActive' : 'navInactive'} to="/pokemons">POKEDEX</NavLink>
           <NavLink className={({isActive}) => isActive ? 'navActive' : 'navInactive'} to="/pokeitems">POKE ITEMS</NavLink>
-          <FilterSection />
+          {/* <FilterSection setSearchValue={setSearchValue} /> */}
+          <input style={{fontSize:'20px', width:'600px',height:'40px',padding:'5px'}} onKeyUp={(event) => setSearchValue(event.target.value)} id="searchInput" name="searchInput" placeholder="SEARCH POKEMON" type="text" />
+
           <NavLink className={({isActive}) => isActive ? 'navActive' : 'navInactive'} to="/login">LOG IN</NavLink>
           <NavLink className={({isActive}) => isActive ? 'navActive' : 'navInactive'} to="/signup">SIGN UP</NavLink>
           <div onClick={showCart} className={openCart ? 'navActive' : 'navInactive'}>

@@ -5,9 +5,9 @@ import ItemList from './ItemList';
 import {fetchAllPokemon} from '../Services/Helpers';
 import { Box, CircularProgress } from '@mui/material';
 
-const ItemListContainer = ({productType}) => {
+const ItemListContainer = ({productType,setSearchValue,search}) => {
   const [products,setProducts] = useState([]);
-  const [search,setSearch] = useState('');
+  // const [searchOriginal,setSearch] = useState('');
   const [loading,setLoading] = useState(true);
 
 
@@ -25,7 +25,7 @@ const ItemListContainer = ({productType}) => {
   },[])
 
   const searchPokemon = e => {
-    setSearch(e.target.value);
+    setSearchValue(e.target.value);
   };
 
   const filteredProducts = products.filter(product => product.name.toLowerCase().includes(search) || product.id == search);
@@ -45,7 +45,7 @@ const ItemListContainer = ({productType}) => {
 
   return (
     <div id="itemContainerWrapper">
-      <FilterSection search={search} searchPokemon={searchPokemon} />
+      {/* <FilterSection search={search} searchPokemon={searchPokemon} /> */}
       <div id="itemContainer">
         <ItemList products={filteredProducts} />
       </div>

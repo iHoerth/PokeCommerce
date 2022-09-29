@@ -6,7 +6,7 @@ async function fetchPokemon(pokeUrl){
   return result;
 }
 
-async function fetchAllPokemon(start,amount,productType){
+async function fetchAll(start,amount,productType){
   const mainUrl = `${baseUrl}/${productType}?offset=${start}&limit=${amount}`
   const data = await fetch(mainUrl);
   const {results} = await data.json();
@@ -31,7 +31,6 @@ async function fetchAllPokemon(start,amount,productType){
       }
   }
 };
-
 
 const getPokemonTypes = pokemon => {
   const pokemonTypes = [];
@@ -61,4 +60,4 @@ const searchPokemon = (pokemonArray,e) => {
   return filteredPoke;
 };
 
-export  {searchPokemon,fetchAllPokemon,toTitleCase};
+export  {searchPokemon,fetchAll,toTitleCase};

@@ -1,20 +1,18 @@
 import {useEffect, useState} from 'react'
-
-import FilterSection from './FilterSection';
-import ItemList from './ItemList';
-import {fetchAllPokemon} from '../Services/Helpers';
 import { Box, CircularProgress } from '@mui/material';
+
+import ItemList from './ItemList';
+import {fetchAll} from '../Services/Helpers';
 
 const ItemListContainer = ({productType,setSearchValue,search}) => {
   const [products,setProducts] = useState([]);
-  // const [searchOriginal,setSearch] = useState('');
   const [loading,setLoading] = useState(true);
-
 
   useEffect(() => {
     const getPoke = async() => {
       try{
-        const pokeList = await fetchAllPokemon(0,493,productType);
+        setLoading(true);
+        const pokeList = await fetchAll(0,493,productType);
         setProducts(pokeList);
         setLoading(false);
       } catch (error) {
@@ -22,13 +20,9 @@ const ItemListContainer = ({productType,setSearchValue,search}) => {
       }
     }
     getPoke();
-  },[])
+  },[productType])
 
-  const searchPokemon = e => {
-    setSearchValue(e.target.value);
-  };
-
-  const filteredProducts = products.filter(product => product.name.toLowerCase().includes(search) || product.id == search);
+  const filteredProducts = products.filter(product => product.name.toLowerCase().includes(search.toLowerCase()) || product.id == search);
 
   if(loading){
     return (
@@ -45,7 +39,6 @@ const ItemListContainer = ({productType,setSearchValue,search}) => {
 
   return (
     <div id="itemContainerWrapper">
-      {/* <FilterSection search={search} searchPokemon={searchPokemon} /> */}
       <div id="itemContainer">
         <ItemList products={filteredProducts} />
       </div>

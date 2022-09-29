@@ -2,9 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { CartContext } from '../Context/CartContext';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { ContactSupportOutlined } from '@mui/icons-material';
 
-const Counter = ({product,style = {fontSize:'32px'}}) => {
+const Counter = ({product,style = {fontSize:'32px'},isHover}) => {
   const [cart,addToCart,removeFromCart,clearCart] = useContext(CartContext)
   const [styleOn, setStyleOn] = useState(false);
 
@@ -16,20 +15,6 @@ const Counter = ({product,style = {fontSize:'32px'}}) => {
     return 0;
    }
   }
-  
-  const handleClick = (operation) => {
-    operation(product);
-    switch(operation){
-      case addToCart:
-        setStyleOn(true);
-        break;
-      case removeFromCart:
-        if(getQuantity() === 1){
-          setStyleOn(false);
-        }
-        break;
-    }
-  }
 
   useEffect(() => {
     if(getQuantity() >= 1){
@@ -39,11 +24,23 @@ const Counter = ({product,style = {fontSize:'32px'}}) => {
     }
   }, [cart])
   
+  useEffect(() => {
+    switch(isHover){
+      case true:
+        setStyleOn(true);
+        break;
+      case false:
+        if(getQuantity() < 1){
+          setStyleOn(false);
+          break;
+        }
+    }
+  }, [isHover])
 
   return (
     <div id="detail-counter" style={{opacity: styleOn === true ? '1': null,}}>
   
-      <RemoveCircleIcon onClick={() => handleClick(removeFromCart)} style={{color:'#59CE8F',fontSize: style.fontSize, cursor:'pointer',}}/>
+      <RemoveCircleIcon onClick={() => removeFromCart(product)} style={{color:'#59CE8F',fontSize: style.fontSize, cursor:'pointer',}}/>
       <p style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
         {
           cart.find(x => x.name === product.name) ?
@@ -52,7 +49,7 @@ const Counter = ({product,style = {fontSize:'32px'}}) => {
           0 + ' U'
         }
       </p>
-      <AddCircleIcon onClick={() => handleClick(addToCart)} style={{color:'#59CE8F',fontSize:style.fontSize, cursor:'pointer'}} />
+      <AddCircleIcon onClick={() => addToCart(product)} style={{color:'#59CE8F',fontSize:style.fontSize, cursor:'pointer'}} />
       
     </div>
   )

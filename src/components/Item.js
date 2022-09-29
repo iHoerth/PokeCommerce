@@ -5,16 +5,24 @@ import Counter from './Counter';
 
 export const Item = ({product}) => {
   const [openDetail,setOpenDetail] = useState(false);
-  
+  const [isHover,setIsHover] = useState(false);
+   
   const showDetail = () => {
     setOpenDetail(!openDetail);
     document.body.classList.toggle('no-scroll');
   }
 
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
+
   return (
     <>
-      <div className='card-container' >
-        <div className="card" onClick={showDetail} style={{ cursor:'pointer' }} >
+      <div className='card-container' onMouseEnter={() => handleMouseEnter()} onMouseLeave={() => handleMouseLeave()}>
+        <div className="card" onClick={showDetail} style={{ cursor:'pointer' }}  >
           <div className='card-typeImg'>
             {
               product.productType === 'pokemon' ?
@@ -34,7 +42,7 @@ export const Item = ({product}) => {
             <img src ={product.sprites.front_default || product.sprites.default} alt=''/>
           </div>
         </div>
-        <Counter product={product} style={{fontSize:'32px'}} />
+        <Counter product={product} style={{fontSize:'32px'}} isHover={isHover} />
         <div>${product.cost}</div>
       </div>
       
@@ -42,7 +50,7 @@ export const Item = ({product}) => {
         openDetail ?
         <>
           <div className='backgroundModal' onClick={() => showDetail()}/>
-          <ItemDetail  showDetail={showDetail} product={product}/>
+          <ItemDetail  showDetail={showDetail} product={product} />
         </>
         :
         null

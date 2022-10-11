@@ -33,7 +33,7 @@ return (
               <div>Quantity: {ele.quantity}</div>
               <div>${ele.cost * ele.quantity}</div>
               <img src={ele.img} alt={ele.nombre+' img'} />
-              <Counter product={ele.poke} />
+              <Counter product={ele.poke} style={{position:'relative'}}/>
             </div>
        
           )

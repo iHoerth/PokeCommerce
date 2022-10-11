@@ -1,6 +1,4 @@
-import React from 'react'
 import Item from './Item'
-import {toTitleCase} from '../Services/Helpers';
 
 const ItemList = ({products}) => {
   return (
@@ -11,8 +9,6 @@ const ItemList = ({products}) => {
     </>
   )
 }
-
-<Item></Item>
 
 export default ItemList;
 

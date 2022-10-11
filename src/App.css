@@ -15,9 +15,7 @@
 .NavBar {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
   z-index: 3;
-  /* position: fixed; */
   background-color: #E64848;
-  /* border-radius: 10px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,8 +62,6 @@
 
 .header{
   z-index: 999;
-  /* position: fixed; */
-
   display:flex;
 }
 
@@ -161,8 +157,6 @@
   min-height: 600px;
   margin: 20px auto;
   font-size: 18px;
-  /* margin-top: 80px; */
-
 }
 
 #detailContainer{
@@ -195,6 +189,16 @@
   }
 }
 
+#loginWrapper{
+  border: 2px solid;
+  display: flex;
+  justify-content: center;
+  width: 80vw;
+  height: 50px;
+  margin: 20px auto;
+  font-size: 18px;
+}
+
 #itemDetail{
   position: fixed;
   animation: fadein 200ms ease-in-out;
@@ -217,10 +221,14 @@
 }
 
 #detail-counter{
+  /* position: absolute; */
   border: 1px solid;
   border-radius: 6px;
   background-color: rgb(212, 255, 235);
-  margin: 10px;
+  width: 200px;
+  /* margin: 10px; */
+  justify-content: space-between;
+  align-items: center;
   display: flex;
   font-size: 18px;
   transition: all 0.2s ease-out;
@@ -230,15 +238,6 @@
 #detail-counter:hover{
   opacity: 1;
 }
-
-/* .fadeInOnHover {
-  opacity: 0;
-  transition: all 0.2s ease-out
-}
-
-.fadeInOnHover:hover{
-  opacity: 1;
-} */
 
 .detail-title{
   font-size: 36px;
@@ -335,7 +334,7 @@
   max-width: 300px;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   flex: 1;
   font-size: 14px;
   font-weight: 500;
@@ -367,7 +366,6 @@
 }
 
 .cart{
-  /* position: absolute; */
   overflow-y:scroll;
   color: black;
   z-index: 998;

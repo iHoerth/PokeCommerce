@@ -1,10 +1,9 @@
-import {useContext} from 'react'
 import {toTitleCase} from '../Services/Helpers';
-import { CartContext } from '../Context/CartContext';
 import Counter from './Counter';
+import CancelIcon from '@mui/icons-material/Cancel';
+
 
 const ItemDetail = ({showDetail, product}) => {
-  const [cart,addToCart,removeFromCart,clearCart,setCart] = useContext(CartContext)
   
   return (
     
@@ -22,7 +21,7 @@ const ItemDetail = ({showDetail, product}) => {
         <div className='detail-title'>
           <div className="detail-text">{toTitleCase(product.name)}</div>
         </div>
-        <div id="detail-closeModal" onClick={showDetail} style={{ cursor:'pointer' }}>X</div>
+        <CancelIcon onClick={showDetail} style={{fontSize:'60px',color:'#E64848',cursor:'pointer'}}/>
       </div>
 
 
@@ -57,7 +56,7 @@ const ItemDetail = ({showDetail, product}) => {
         </div>
 
       </div>
-      <Counter product={product} style={{fontSize:'50px',}} />
+      <Counter product={product} style={{fontSize:'50px', position:'relative'}} />
      
     </div>
   )

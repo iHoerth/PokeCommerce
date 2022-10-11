@@ -22,6 +22,7 @@ export const Item = ({product}) => {
   return (
     <>
       <div className='card-container' onMouseEnter={() => handleMouseEnter()} onMouseLeave={() => handleMouseLeave()}>
+        <Counter product={product} style={{fontSize:'32px', position:'absolute'}} isHover={isHover} />
         <div className="card" onClick={showDetail} style={{ cursor:'pointer' }}  >
           <div className='card-typeImg'>
             {
@@ -42,7 +43,6 @@ export const Item = ({product}) => {
             <img src ={product.sprites.front_default || product.sprites.default} alt=''/>
           </div>
         </div>
-        <Counter product={product} style={{fontSize:'32px'}} isHover={isHover} />
         <div>${product.cost}</div>
       </div>
       

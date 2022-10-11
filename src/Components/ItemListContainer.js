@@ -3,11 +3,34 @@ import { Box, CircularProgress } from '@mui/material';
 
 import ItemList from './ItemList';
 import {fetchAll} from '../Services/Helpers';
+import { createItem, deleteItem, getItems } from '../Services/Api';
 
 const ItemListContainer = ({productType,setSearchValue,search}) => {
   const [products,setProducts] = useState([]);
   const [loading,setLoading] = useState(true);
 
+  const pruebaFireBase = (pokemons) => {
+    console.log(pokemons);
+    pokemons.forEach(poke => {
+      const newPoke = {
+        productType: poke.productType,
+        name: poke.name,
+        order: poke.id,
+        types: poke.types,
+        sprites: {front_default: poke.sprites.front_default},
+        stats: poke.stats,
+        weight: poke.weight,
+        base_experience: poke.base_experience,
+        base_happiness: poke.species.base_happiness,
+        capture_rate: poke.species.capture_rate,
+        evolution_chain: poke.species.evolution_chain,
+        egg_groups: poke.species.egg_groups,
+        is_legendary: poke.species.is_legendary,
+      }
+      console.log(newPoke);
+      createItem(newPoke,'pokemons')
+    })
+  }
   useEffect(() => {
     const getPoke = async() => {
       try{
@@ -15,6 +38,7 @@ const ItemListContainer = ({productType,setSearchValue,search}) => {
         const pokeList = await fetchAll(0,493,productType);
         setProducts(pokeList);
         setLoading(false);
+        console.log(pokeList)
       } catch (error) {
         console.log('hubo un error')
       }
@@ -39,6 +63,10 @@ const ItemListContainer = ({productType,setSearchValue,search}) => {
 
   return (
     <div id="itemContainerWrapper">
+      <div> 
+        <p>HOLA SOY UN DIV</p> 
+
+      </div>
       <div id="itemContainer">
         <ItemList products={filteredProducts} />
       </div>

@@ -2,8 +2,8 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import {useState, useEffect } from 'react';
 import ItemListContainer from './Components/ItemListContainer';
 import NavBar from './Components/NavBar';
-import Login from './Components/Login';
-import Signup from './Components/Signup';
+import SignIn from './Components/SignIn';
+import Signup from './Components/SignUp';
 import CartContext from './Context/CartContext';
 import Cart from './Components/Cart'
 
@@ -29,7 +29,7 @@ function App() {
           <Routes>
             <Route path='/pokemons/' element={<ItemListContainer search={search} productType={'pokemon'} />}/>
             <Route path='/pokeitems' element={<ItemListContainer search={search} productType={'item'} />}/>
-            <Route path='/login' element={<Login />}/>
+            <Route path='/login' element={<SignIn />}/>
             <Route path='/signup' element={<Signup />}/>
             <Route path='*' element={<ItemListContainer search={search} productType={'pokemon'}/>}/>
             <Route path='/cart' element={<Cart />}/>

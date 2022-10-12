@@ -28,7 +28,8 @@ function App() {
           <NavBar setSearchValue={setSearchValue} />
           <Routes>
             <Route path='/pokemons/' element={<ItemListContainer search={search} productType={'pokemon'} />}/>
-            <Route path='/pokeitems' element={<ItemListContainer search={search} productType={'item'} />}/>
+            <Route path='/pokemons/:type' element={<ItemListContainer search={search} productType={'pokemon'} />}/>
+            {/* <Route path='/pokeitems' element={<ItemListContainer search={search} productType={'item'} />}/> */}
             <Route path='/login' element={<SignIn />}/>
             <Route path='/signup' element={<Signup />}/>
             <Route path='*' element={<ItemListContainer search={search} productType={'pokemon'}/>}/>

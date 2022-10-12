@@ -2,7 +2,6 @@ import {toTitleCase} from '../Services/Helpers';
 import Counter from './Counter';
 import CancelIcon from '@mui/icons-material/Cancel';
 
-
 const ItemDetail = ({showDetail, product}) => {
   
   return (
@@ -30,28 +29,43 @@ const ItemDetail = ({showDetail, product}) => {
           <div className='detail-img-container'> 
             <img className="detail-img" src={product.sprites.front_default} alt="" />
             <div className='detail-description'>
+            <h3>DESCRIPTION</h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam aliquam earum deleniti, esse excepturi magni amet distinctio quod reiciendis reprehenderit illo, qui quibusdam consequuntur voluptatum veritatis minima odio pariatur facere!
+                {
+                  product.species.flavor_text_entries[0].flavor_text + product.species.flavor_text_entries[1].flavor_text
+                }
               </p>
             </div>
           </div>
-
-          <div className='detail-img-container'> 
-            <img className="detail-img" src={product.sprites.back_default} alt="" />
-            <div className='detail-description'>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam aliquam earum deleniti, esse excepturi magni amet distinctio quod reiciendis reprehenderit illo, qui quibusdam consequuntur voluptatum veritatis minima odio pariatur facere!
-              </p>
+     
+            <div className='detail-img-container'> 
+              <img className="detail-img" src={product.sprites.back_default} alt="" />
+              <div className='detail-description'>
+                <p>
+                  {
+                    product.species.flavor_text_entries[2].flavor_text + product.species.flavor_text_entries[3].flavor_text
+                  }
+                </p>
+              </div>
             </div>
-          </div>
+          
         </div>
-
-        <div className='detail-evoChain-container'>
-          <h3>EVO CHAIN</h3>
-          <div className='detail-evoChain-img-container'> 
-            <img className="detail-evoChain-img" src={product.sprites.front_default} alt="" />
-            <img className="detail-evoChain-img" src={product.sprites.front_default} alt="" />
-            <img className="detail-evoChain-img" src={product.sprites.front_default} alt="" />
+        <div className='detail-description-container'>
+          <div className='detail-stats'>
+            <h3>BASE STATS</h3>
+            <p>
+              {
+                product.stats.map(stat => <p>{toTitleCase(stat.stat.name)} : {stat.base_stat} </p>)
+              }
+            </p>
+          </div>
+          <div className='detail-evoChain-container'>
+            <h3>EVO CHAIN</h3>
+            <div className='detail-evoChain-img-container'> 
+              <img className="detail-evoChain-img" src={product.sprites.front_default} alt="" />
+              <img className="detail-evoChain-img" src={product.sprites.front_default} alt="" />
+              <img className="detail-evoChain-img" src={product.sprites.front_default} alt="" />
+            </div>
           </div>
         </div>
 

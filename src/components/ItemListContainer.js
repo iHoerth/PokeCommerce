@@ -1,28 +1,31 @@
 import {useEffect, useState} from 'react'
 import { Box, CircularProgress } from '@mui/material';
+import { useParams } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import ItemList from './ItemList';
 import {fetchAll} from '../Services/Helpers';
-import { createItem, deleteItem, getItems } from '../Services/Api';
 
 const ItemListContainer = ({productType,setSearchValue,search}) => {
   const [products,setProducts] = useState([]);
   const [loading,setLoading] = useState(true);
+  const {type} = useParams();
 
   useEffect(() => {
     const getPoke = async() => {
-      try{
-        setLoading(true);
-        const pokeList = await fetchAll(0,493,productType);
+      setLoading(true);
+      const pokeList = await fetchAll(0,493,productType);
+      if(type !== undefined) {
+        const categoryFilter = pokeList.filter(poke => poke.types.includes(type));
+        setProducts(categoryFilter);
+        setLoading(false);
+      } else {
         setProducts(pokeList);
         setLoading(false);
-        console.log(pokeList)
-      } catch (error) {
-        console.log('hubo un error')
       }
     }
     getPoke();
-  },[productType])
+  },[productType,type])
 
   const filteredProducts = products.filter(product => product.name.toLowerCase().includes(search.toLowerCase()) || product.id == search);
 
@@ -41,9 +44,29 @@ const ItemListContainer = ({productType,setSearchValue,search}) => {
 
   return (
     <div id="itemContainerWrapper">
-      <div> 
-        <p>HOLA SOY UN DIV</p> 
-
+      <div className='categories'> 
+        <ul>
+          <h3>Categorias</h3>
+          <NavLink className='categoryLink' to='/pokemons/'>ALL</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/fire'>Fire</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/grass'>Grass</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/water'>Water</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/electric'>Electric</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/ice'>Ice</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/bug'>Bug</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/poison'>Poison</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/ghost'>Ghost</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/psychic'>Psychic</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/dark'>Dark</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/fairy'>Fairy</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/fighting'>Fighting</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/normal:'>Normal</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/flying'>Flying</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/steel'>Steel</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/dragon'>Dragon</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/rock'>Rock</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/ground'>Ground</NavLink>
+        </ul>
       </div>
       <div id="itemContainer">
         <ItemList products={filteredProducts} />

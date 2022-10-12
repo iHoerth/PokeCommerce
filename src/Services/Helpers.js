@@ -22,7 +22,7 @@ async function fetchAll(start,amount,productType){
       }
     case 'pokemon':
       {
-        const pokemons = products.map(poke => ({productType:'pokemon',...poke,types:getPokemonTypes(poke),cost:300 + Math.floor(Math.random()*5000)}))
+        const pokemons = products.map(poke => ({productType:'pokemon',...poke,types:getPokemonTypes(poke),cost:3500}))
         const species = await getSpecies(pokemons);
         for(let i = 0; i < pokemons.length; i++){
           pokemons[i].species = species[i]; 
@@ -59,5 +59,7 @@ const searchPokemon = (pokemonArray,e) => {
   const filteredPoke = pokemonArray.filter(poke => poke.name.toLowerCase().includes(e.target.value.toLowerCase()) || poke.id == e.target.value);
   return filteredPoke;
 };
+
+
 
 export  {searchPokemon,fetchAll,toTitleCase};

@@ -139,6 +139,7 @@
 }
 
 #itemContainer{
+
   border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -151,9 +152,8 @@
 #itemContainerWrapper{
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 80vw;
+  flex-direction: row;
+  width: 98vw;
   min-height: 600px;
   margin: 20px auto;
   font-size: 18px;
@@ -323,9 +323,11 @@
 }
 
 .card-container{
+  height: 190px;
+  background-color: white;
   margin:5px;
-  border: 1px solid black;
-  border-radius: 4px;
+  border: 1px solid rgb(170, 170, 170);
+  box-shadow: 0 0 2px rgb(145, 144, 144);
   padding: 2px;
   transition: 200ms;
   display: flex;
@@ -334,12 +336,11 @@
   max-width: 300px;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   flex: 1;
   font-size: 14px;
   font-weight: 500;
-  border-radius: 4px;
-
+  border-radius: 2px;
+  box-shadow: 2px;
 }
 
 .widgetAmount{
@@ -405,4 +406,30 @@
   100%{
     transform: translateX(0px);
   }
+}
+
+.categories {
+  background-color: white;
+  font-size: 16px;
+  border: 1px solid rgb(194, 194, 194);
+  box-shadow: 0 0 2px rgb(145, 144, 144);
+  border-radius: 4px;
+  width: 8.5%;
+  height: 598px;
+  position: absolute;
+  margin: 24px auto;
+}
+
+.categoryLink{
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-end;
 }

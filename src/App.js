@@ -28,18 +28,17 @@ function App() {
         <div className="App">
           <NavBar setSearchValue={setSearchValue} />
           <Routes>
-            <Route path='/pokemons/' element={<ItemListContainer search={search} productType={'pokemon'} />}/>
-            <Route path='/pokemons/:type' element={<ItemListContainer search={search} productType={'pokemon'} />}/>
+            <Route path='/pokemons/' element={<ItemListContainer search={search}  />}/>
+            <Route path='/pokemons/:type' element={<ItemListContainer search={search}  />}/>
+            <Route path='*' element={<ItemListContainer search={search} />}/>
+            <Route path='/cart' element={<Cart />}/>
             <Route path='/checkout' element={<Checkout />}/>
             <Route path='/login' element={<SignIn />}/>
             <Route path='/signup' element={<Signup />}/>
-            <Route path='*' element={<ItemListContainer search={search} productType={'pokemon'}/>}/>
-            <Route path='/cart' element={<Cart />}/>
           </Routes>
         </div>
       </BrowserRouter>
     </CartContext >
-
   );
 }
 

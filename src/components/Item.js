@@ -1,9 +1,9 @@
 import {useState} from 'react'
-import { toTitleCase } from '../Services/Helpers';
 import ItemDetail from './ItemDetail';
 import Counter from './Counter';
+import { toTitleCase } from '../Services/Helpers';
 
-export const Item = ({product}) => {
+export const Item = ({poke}) => {
   const [openDetail,setOpenDetail] = useState(false);
   const [isHover,setIsHover] = useState(false);
    
@@ -22,35 +22,27 @@ export const Item = ({product}) => {
   return (
     <>
       <div className='card-container' onMouseEnter={() => handleMouseEnter()} onMouseLeave={() => handleMouseLeave()}>
-        <Counter product={product} style={{fontSize:'32px', position:'absolute'}} isHover={isHover} />
+        <Counter poke={poke} style={{fontSize:'32px', position:'absolute'}} isHover={isHover} />
         <div className="card" onClick={showDetail} style={{ cursor:'pointer' }}  >
           <div className='card-typeImg'>
-            {
-              product.productType === 'pokemon' ?
-              product.types.map(type => <img key={product.id+type} className={'icon '+type} src={type+'.svg'} alt=''/>)
-              : null
-            }
+            {poke.types.map(type => <img key={poke.id+type} className={'icon '+type} src={'/Images/'+type+'.svg'} alt=''/>)}
           </div>
           <div>
-            {
-            product.productType === 'pokemon' ?
-            `#`+product.id
-            : null
-            }
+            {`#`+poke.id}
           </div>
-          <div>{toTitleCase(product.name)}</div>
+          <div>{toTitleCase(poke.name)}</div>
             <div className='pokeimgContainer'>
-            <img src ={product.sprites.front_default || product.sprites.default} alt=''/>
+            <img src ={poke.sprites.front_default || poke.sprites.default} alt=''/>
           </div>
         </div>
-        <div>${product.cost}</div>
+        <div>${poke.cost}</div>
       </div>
       
       {
         openDetail ?
         <>
           <div className='backgroundModal' onClick={() => showDetail()}/>
-          <ItemDetail  showDetail={showDetail} product={product} />
+          <ItemDetail  showDetail={showDetail} poke={poke} />
         </>
         :
         null

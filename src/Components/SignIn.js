@@ -1,3 +1,7 @@
+import { useContext } from 'react';
+import { CartContext } from '../Context/CartContext';
+import { useNavigate } from 'react-router-dom';
+
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -9,6 +13,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import { getItems } from '../Services/Api';
 
 function Copyright(props) {
   return (
@@ -26,13 +32,26 @@ function Copyright(props) {
 const theme = createTheme();
 
 const SignIn = () => {
-  const handleSubmit = (event) => {
+  const [cart, addToCart, removeFromCart, clearCart, user, setUser,totalInCart] = useContext(CartContext)
+  const navigate = useNavigate();
+
+  const handleSubmit = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
+    const loginUser = {
+      mail: data.get('email'),
       password: data.get('password'),
-    });
+    }
+    console.log('BUSCANDO EL SIGUIENTE USUARIO EN FIREBASE...',loginUser);
+    const fetchUsers = await getItems('users');
+    const user = fetchUsers.find(user => (user.mail === loginUser.mail) && (user.password === loginUser.password))
+    if(user !== undefined){
+      alert('LOGUEADO CON EXITO COMO '+user.mail);
+      setUser(user);
+      navigate('/pokemons');
+    } else {
+      alert('NO EXISTE');
+    }
   };
 
   return (

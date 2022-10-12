@@ -9,10 +9,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
-// import AddressForm from './AddressForm';
-// import PaymentForm from './PaymentForm';
-// import Review from './Review';
+
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { CartContext } from '../Context/CartContext';
+import { toTitleCase } from '../Services/Helpers';
+import Counter from './Counter';
 
 function Copyright() {
   return (
@@ -30,6 +32,9 @@ function Copyright() {
 const theme = createTheme();
 
 export default function Checkout() {
+  const [cart, addToCart, removeFromCart, clearCart, user, setUser,totalInCart] = useContext(CartContext);
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -37,11 +42,46 @@ export default function Checkout() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    alert('COMPRA REALIZADA');
+    navigate('/pokemon')
+    clearCart();
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+    <div style={{display:'flex'}}>
+      <div style={{width:'350px', marginLeft:'40px'}}>
+        <div style={{
+          width:'300px',
+          marginTop: '60px'
+          }}>
+            <Typography style={{marginBottom:"25px"}}component="h1" variant="h5">
+            POKEMONES
+          </Typography>
+          {
+            cart.map(ele => {
+              return(
+                <div key={ele.name} className='checkout-products'
+                style={{
+                  border:'1px solid rgb(194, 194, 194)',
+                  borderRadius: '4px',
+                  boxShadow: '0 0 2px rgb(145, 144, 144)',
+                  width:'100%',
+                  marginTop:'10px'
+                  }}>
+                  <div>
+                    <div>{toTitleCase(ele.name)}</div>
+                    <div>Quantity: {ele.quantity}</div>
+                    <div>${ele.cost * ele.quantity}</div>
+                    <Counter poke={ele.poke} style={{position:'relative'}}/>
+                  </div>
+                  <img src={ele.img} alt={ele.nombre+' img'} />
+                </div>
+              )
+            })
+          }
+        </div>
+      </div>
+      <div style={{marginLeft: '60px', width:'50%'}}>
         <CssBaseline />
         <Box
           sx={{
@@ -113,7 +153,7 @@ export default function Checkout() {
               style={{backgroundColor:"#E64848"}}
               sx={{ mt: 3, mb: 2 }}
             >
-              Confirmar Compra
+              Confirmar Compra ${cart.reduce((acc,ele) => acc + ele.cost * ele.quantity ,0)}
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
@@ -125,7 +165,7 @@ export default function Checkout() {
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+      </div>
+    </div>
   );
 }

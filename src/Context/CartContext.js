@@ -1,8 +1,10 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect} from "react"
+import useLocalStorage from "../Services/useLocalStorage";
 
 const CartProvider = ({children}) => {
-  const [cart, setCart] = useState([]);
-  const [user,setUser] = useState({})
+  const [cart, setCart] = useLocalStorage('cart',[]);
+  const [user,setUser] = useLocalStorage('user',{});
+  const [totalInCart,setTotalInCart] = useLocalStorage('totalInCart',0);
    
   const addToCart = item => {
     const existsInCart = cart.findIndex(x => x.name === item.name)
@@ -63,9 +65,15 @@ const CartProvider = ({children}) => {
     setCart([]);
   }
 
+  useEffect(() => {
+    const result = cart.reduce((acc,current) => acc + current.quantity,0);
+    setTotalInCart(result)
+  }, [cart])
+  
+
   return (
     <>
-      <CartContext.Provider value={[cart, addToCart, removeFromCart, clearCart, user, setUser]}>
+      <CartContext.Provider value={[cart, addToCart, removeFromCart, clearCart, user, setUser,totalInCart]}>
           {children}
       </CartContext.Provider>
     </>

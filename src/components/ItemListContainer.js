@@ -6,28 +6,32 @@ import {NavLink} from 'react-router-dom';
 import ItemList from './ItemList';
 import {fetchAll} from '../Services/Helpers';
 
-const ItemListContainer = ({productType,setSearchValue,search}) => {
-  const [products,setProducts] = useState([]);
+
+
+const ItemListContainer = ({search}) => {
+  const [pokemons,setPokemons] = useState([]);
   const [loading,setLoading] = useState(true);
   const {type} = useParams();
 
   useEffect(() => {
     const getPoke = async() => {
       setLoading(true);
-      const pokeList = await fetchAll(0,493,productType);
+      const pokeList = await fetchAll(0,493); 
       if(type !== undefined) {
         const categoryFilter = pokeList.filter(poke => poke.types.includes(type));
-        setProducts(categoryFilter);
+        setPokemons(categoryFilter);
         setLoading(false);
       } else {
-        setProducts(pokeList);
+        setPokemons(pokeList);
         setLoading(false);
       }
+
     }
     getPoke();
-  },[productType,type])
+  },[type])
 
-  const filteredProducts = products.filter(product => product.name.toLowerCase().includes(search.toLowerCase()) || product.id == search);
+  
+  const filteredPoke = pokemons.filter(poke => poke.name.toLowerCase().includes(search.toLowerCase()) || poke.id == search);
 
   if(loading){
     return (
@@ -60,7 +64,7 @@ const ItemListContainer = ({productType,setSearchValue,search}) => {
           <NavLink className='categoryLink' to='/pokemons/dark'>Dark</NavLink>
           <NavLink className='categoryLink' to='/pokemons/fairy'>Fairy</NavLink>
           <NavLink className='categoryLink' to='/pokemons/fighting'>Fighting</NavLink>
-          <NavLink className='categoryLink' to='/pokemons/normal:'>Normal</NavLink>
+          <NavLink className='categoryLink' to='/pokemons/normal'>Normal</NavLink>
           <NavLink className='categoryLink' to='/pokemons/flying'>Flying</NavLink>
           <NavLink className='categoryLink' to='/pokemons/steel'>Steel</NavLink>
           <NavLink className='categoryLink' to='/pokemons/dragon'>Dragon</NavLink>
@@ -69,7 +73,7 @@ const ItemListContainer = ({productType,setSearchValue,search}) => {
         </ul>
       </div>
       <div id="itemContainer">
-        <ItemList products={filteredProducts} />
+        <ItemList pokemons={filteredPoke} />
       </div>
     </div>
   )

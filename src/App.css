@@ -415,6 +415,7 @@
   box-shadow: 0 0 2px rgb(145, 144, 144);
   border-radius: 4px;
   width: 8.5%;
+  min-width:120px;
   height: 598px;
   position: absolute;
   margin: 24px auto;
@@ -441,4 +442,9 @@ ul {
   display:flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.checkout-products{
+  display:flex;
+  width: 150px;
 }

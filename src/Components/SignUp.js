@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { createItem,getItems } from '../Services/Api';
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -26,13 +28,23 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
+    const newUser = {
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      mail: data.get('email'),
       password: data.get('password'),
-    });
+    }
+    console.log('CREANDO USUARIO...',newUser);
+    const getUsers = await getItems('users');
+    if(getUsers.some(user => user.mail === newUser.mail)){
+        alert('YA EXISTE UN USUARIO ASOCIADO A ESE EMAIL')
+    } else {
+      createItem(newUser,'users');
+      alert('USUARIO CREADO CON EXITO!');
+    }
   };
 
   return (

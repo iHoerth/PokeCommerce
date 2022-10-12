@@ -1,10 +1,10 @@
 import Item from './Item'
 
-const ItemList = ({products}) => {
+const ItemList = ({pokemons}) => {
   return (
     <>
       {
-        products.map(x => <Item key={x.id} product={x} />)
+        pokemons.map(poke => <Item key={poke.id} poke={poke} />)
       }
     </>
   )

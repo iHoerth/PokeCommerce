@@ -2,7 +2,7 @@ import { useContext} from 'react'
 import { CartContext } from '../Context/CartContext'
 
 const CartWidget = () => {
-  const [cart] = useContext(CartContext);
+  const [cart, addToCart, removeFromCart, clearCart, user, setUser,totalInCart] = useContext(CartContext);
     
   return (
     <div className='widgetWrapper'>
@@ -12,7 +12,7 @@ const CartWidget = () => {
       </div>
       <div className='widgetAmount'>
         {
-        cart.reduce((acc,current) => acc + current.quantity,0)
+        totalInCart
         }
       </div>
     </div>

@@ -1,10 +1,12 @@
 import {useContext} from 'react'
-import { CartContext } from '../Context/CartContext';
-import Counter from './Counter';
 import { useNavigate } from 'react-router-dom';
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import CancelIcon from '@mui/icons-material/Cancel';
 import Button from '@mui/material/Button';
+
+import Counter from './Counter';
+import { CartContext } from '../Context/CartContext';
 import { toTitleCase } from '../Services/Helpers';
 
 const Cart = ({setOpenCart}) => {
@@ -41,7 +43,7 @@ return (
               <div>Quantity: {ele.quantity}</div>
               <div>${ele.cost * ele.quantity}</div>
               <img src={ele.img} alt={ele.nombre+' img'} />
-              <Counter product={ele.poke} style={{position:'relative'}}/>
+              <Counter poke={ele.poke} style={{position:'relative'}}/>
             </div>
           )
         })

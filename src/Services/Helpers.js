@@ -6,30 +6,18 @@ async function fetchPokemon(pokeUrl){
   return result;
 }
 
-async function fetchAll(start,amount,productType){
-  const mainUrl = `${baseUrl}/${productType}?offset=${start}&limit=${amount}`
+async function fetchAll(start,amount){
+  const mainUrl = `${baseUrl}/pokemon?offset=${start}&limit=${amount}`
   const data = await fetch(mainUrl);
   const {results} = await data.json();
   const products = await Promise.all(results.map(poke => fetchPokemon(poke.url)))
-
-  switch(productType){
-    case 'item':
-      {
-        products.map(x => ({productType:'item',...x}))
-        const purchasableProducts = products.filter(ele => ele.cost !== 0);
-        console.log(purchasableProducts);
-        return purchasableProducts;
-      }
-    case 'pokemon':
-      {
-        const pokemons = products.map(poke => ({productType:'pokemon',...poke,types:getPokemonTypes(poke),cost:3500}))
-        const species = await getSpecies(pokemons);
-        for(let i = 0; i < pokemons.length; i++){
-          pokemons[i].species = species[i]; 
-        }
-        return pokemons;
-      }
+  const pokemons = products.map(poke => ({...poke,types:getPokemonTypes(poke),cost:3500}))
+  const species = await getSpecies(pokemons);
+  for(let i = 0; i < pokemons.length; i++){
+    pokemons[i].species = species[i]; 
   }
+  return pokemons;
+
 };
 
 const getPokemonTypes = pokemon => {

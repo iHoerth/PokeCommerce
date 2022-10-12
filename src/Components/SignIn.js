@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { CartContext } from '../Context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -110,9 +111,7 @@ const SignIn = () => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+                  <NavLink to='/signup'>{"Don't have an account? Sign Up"}</NavLink>
               </Grid>
             </Grid>
           </Box>

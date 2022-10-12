@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -125,9 +127,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
+                <NavLink to='/login'>Already have an account? Sign in</NavLink>
               </Grid>
             </Grid>
           </Box>
